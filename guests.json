@@ -100,12 +100,12 @@
   "c": 3
  },
  "51b97e": {
-  "n": "Sr. Andrey Vergara y esposa",
-  "c": 2
+  "n": "Sr. Andrey Vergara, esposa, hijo e hija",
+  "c": 4
  },
  "c0661d": {
-  "n": "Sr. Fernando Valderrama y esposa",
-  "c": 2
+  "n": "Sr. Fernando Valderrama, esposa, hijo e hija",
+  "c": 4
  },
  "b562b1": {
   "n": "Sra. Trinidad Ocampo",
@@ -198,5 +198,9 @@
  "ca3386": {
   "n": "Sra. Angie Martínez y familia",
   "c": 5
+ },
+ "0fc080": {
+  "n": "Sra. Sandra Carvajal",
+  "c": 1
  }
 }

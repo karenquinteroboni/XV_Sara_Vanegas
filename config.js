@@ -25,7 +25,8 @@ window.CONFIG = {
     { n: "Porchetta de Cerdo Especiada", d: "Porchetta de cerdo sazonada con una selección de especias y hierbas aromáticas. Acompañada de papa criolla dorada y ensalada tipo ceviche." },
     { n: "Filete de Salmón a la Plancha", d: "Filete de salmón a la plancha, acompañado de ensalada César y un ligero puré de papa." },
     { n: "Filete de Salmón en Salsa de Naranja", d: "Filete de salmón bañado en una delicada salsa de naranja. Acompañado de un mix de espárragos y zanahorias baby salteados en salsa meunière y papas en casco a la provenzal." },
-    { n: "Pollo al Cilantro", d: "Escalopes de pechuga de pollo marinados al cilantro, acompañados de ensalada César y papas en casco a la provenzal." }
+    { n: "Pollo al Cilantro", d: "Escalopes de pechuga de pollo marinados al cilantro, acompañados de ensalada César y papas en casco a la provenzal." },
+    { n: "Chiken Junior", g: "Menú infantil", d: "Pechuga de pollo apanada, acompañada de papas a la francesa, porción de fruta con yogurt y jugo del día." }
   ],
 
   // Música: pon el archivo en assets/audio/ y ajusta el segundo de inicio.

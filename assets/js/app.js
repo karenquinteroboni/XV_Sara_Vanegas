@@ -27,7 +27,12 @@
 
   function buildMenu() {
     var ul = $("dishList"); ul.innerHTML = "";
+    var grupo = "";
     (C.menu || []).forEach(function (m) {
+      if ((m.g || "") !== grupo) {          // encabezado cuando empieza otro grupo (p. ej. Menú infantil)
+        grupo = m.g || "";
+        if (grupo) { var h = document.createElement("li"); h.className = "grp"; h.textContent = grupo; ul.appendChild(h); }
+      }
       var li = document.createElement("li");
       li.innerHTML = "<b>" + esc(m.n) + "</b><span>" + esc(m.d) + "</span>";
       ul.appendChild(li);
@@ -50,7 +55,11 @@
       }
       var sel = document.createElement("select"); sel.setAttribute("aria-label", "Plato de la persona " + (k + 1));
       sel.add(new Option("Elige el plato…", ""));
-      (C.menu || []).forEach(function (m) { sel.add(new Option(m.n, m.n)); });
+      var og = null, gAct = "";
+      (C.menu || []).forEach(function (m) {
+        if ((m.g || "") !== gAct) { gAct = m.g || ""; og = gAct ? document.createElement("optgroup") : null; if (og) { og.label = gAct; sel.appendChild(og); } }
+        var o = new Option(m.n, m.n); (og || sel).appendChild(o);
+      });
       sel.value = persons.dishes[k] || "";
       sel.addEventListener("change", function () { persons.dishes[k] = sel.value; $("rsvpErr").hidden = true; });
       row.appendChild(sel); box.appendChild(row);

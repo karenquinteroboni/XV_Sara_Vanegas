@@ -296,3 +296,5 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 
 .deadline{font-size:clamp(1.7rem,7vw,2.3rem);line-height:1.2;color:var(--olive);margin:-.6rem 0 1.4rem;-webkit-text-stroke:.45px currentColor}
 .deadline span{white-space:nowrap}
+
+.dishes li.grp{border:0;padding:1.1rem 0 .2rem;text-align:center;font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:#8f6f2c}
