@@ -217,10 +217,10 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 
 /* ===== XV dorado, grande y victoriano ===== */
 .victorian{font-family:var(--display)!important;font-weight:500;letter-spacing:.1em;
-  background:linear-gradient(180deg,#fff7c9 0%,#fbdc72 28%,#efbb45 52%,#d4922a 68%,#f6d46a 88%,#fff4bc 100%);
+  background:linear-gradient(180deg,#fdf8e1 0%,#f5d18a 24%,#e1aa4d 46%,#c68328 64%,#dfa449 80%,#f5d18a 92%,#fbe7b4 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 1px 0 rgba(120,76,8,.85)) drop-shadow(0 3px 6px rgba(0,0,0,.4)) drop-shadow(0 0 16px rgba(255,214,110,.5))}
-.hero-card .roman.big{font-size:clamp(5.2rem,27vw,9rem);line-height:.95;margin:.05em 0 .1em;text-shadow:none}
+  filter:drop-shadow(0 1px 0 rgba(110,66,8,.8)) drop-shadow(0 3px 6px rgba(0,0,0,.4)) drop-shadow(0 0 14px rgba(253,234,175,.45))}
+.hero-card .roman.big{font-size:clamp(4.6rem,23.5vw,8rem);line-height:.95;margin:.05em 0 .1em;text-shadow:none}
 .xv-wrap{display:flex;align-items:center;justify-content:center;gap:.7rem}
 .xv-wrap::before,.xv-wrap::after{content:"";flex:1;height:1px;max-width:54px;background:linear-gradient(90deg,transparent,#d9b86a)}
 .xv-wrap::after{transform:scaleX(-1)}
@@ -280,3 +280,7 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .burst .sm{border-radius:50%;background:radial-gradient(circle,rgba(242,232,208,.6),rgba(242,232,208,0) 68%);filter:blur(9px);animation:bsm var(--t) ease-out var(--d) forwards}
 @keyframes bsp{0%{transform:translate(0,0) scale(.2) rotate(0);opacity:0}15%{opacity:1}70%{opacity:.9}100%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(80deg);opacity:0}}
 @keyframes bsm{0%{transform:translate(0,0) scale(.3);opacity:0}25%{opacity:.85}100%{transform:translate(var(--dx),var(--dy)) scale(2.6);opacity:0}}
+
+/* "Mis" más visible */
+.hero-card .eyebrow{font-size:.86rem;font-weight:600;letter-spacing:.34em;color:#f5d98f;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.env-card .eyebrow{font-size:.82rem;font-weight:600;color:#8f6f2c}
