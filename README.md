@@ -21,3 +21,8 @@ Hoy la confirmación llega por WhatsApp. Para que además se registre en una hoj
 1. Crear una hoja de Google → Extensiones → Apps Script → pegar `tools/apps-script.gs`.
 2. Implementar → Aplicación web (ejecutar como "yo", acceso "cualquier persona") → copiar la URL.
 3. Pegarla en `rsvpEndpoint` dentro de `config.js`.
+
+## Confirmación ya registrada
+La página consulta la hoja (`doGet` del script) al buscar un nombre. Si ya hay confirmación, la muestra y permite cambiarla;
+al guardar, el script borra la fila anterior y registra la nueva. Si la consulta falla, se muestra el formulario normal.
+Tras actualizar `tools/apps-script.gs` hay que publicar **Nueva versión** de la implementación.

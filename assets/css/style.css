@@ -284,3 +284,12 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 /* "Mis" más visible */
 .hero-card .eyebrow{font-size:.86rem;font-weight:600;letter-spacing:.34em;color:#f5d98f;text-shadow:0 1px 6px rgba(0,0,0,.55)}
 .env-card .eyebrow{font-size:.82rem;font-weight:600;color:#8f6f2c}
+
+/* ===== Confirmación ya registrada ===== */
+.rsvp-loading{text-align:center;font-style:italic;margin:1rem 0}
+.rsvp-done{text-align:center}
+.done-card{border:1px solid var(--gold);background:#fffdf7;padding:1.1rem 1rem;margin:0 0 1.3rem;border-radius:2px}
+.done-t{font-family:var(--display);font-weight:600;font-size:1rem;letter-spacing:.05em;color:var(--olive);line-height:1.45;margin-bottom:.7rem}
+.done-menu{list-style:none;text-align:left}
+.done-menu li{padding:.45rem 0;border-top:1px solid rgba(168,136,74,.28);font-size:1.02rem;line-height:1.4}
+.done-menu b{font-weight:600;color:#8f6f2c}

@@ -58,15 +58,64 @@
   }
   $("rsvpN").addEventListener("change", rebuildPersons);
 
-  function pick(g) {
-    picked = g; persons = { names: [], dishes: [] };
-    $("rsvpSearch").hidden = true; $("rsvpThanks").hidden = true; $("rsvpPick").hidden = false;
+  var editing = false, pickToken = 0;
+
+  function parseMenu(str) {
+    return String(str || "").split(" | ").map(function (t) {
+      var m = t.match(/^\d+\.\s*(.*?):\s*(.+)$/);
+      return m ? { who: m[1], dish: m[2] } : null;
+    }).filter(Boolean);
+  }
+  function lookup(nombre) {
+    var ctl = ("AbortController" in window) ? new AbortController() : null, t = ctl && setTimeout(function () { ctl.abort(); }, 8000);
+    return fetch(C.rsvpEndpoint + "?nombre=" + encodeURIComponent(nombre), ctl ? { signal: ctl.signal } : {})
+      .then(function (r) { if (t) clearTimeout(t); return r.json(); });
+  }
+  function hideAllRsvp() {
+    ["rsvpSearch", "rsvpThanks", "rsvpPick", "rsvpDone", "rsvpLoading"].forEach(function (id) { $(id).hidden = true; });
+  }
+  function showDone(g, r) {
+    hideAllRsvp(); $("rsvpDone").hidden = false;
+    var n = Number(r.asistentes) || 0;
+    $("doneName").textContent = g.n;
+    $("doneTitle").textContent = n > 0
+      ? "Tu asistencia ya está confirmada para " + n + (n === 1 ? " persona." : " personas.")
+      : "Ya nos indicaste que no podrás asistir.";
+    var ul = $("doneMenu"); ul.innerHTML = "";
+    parseMenu(r.menu).forEach(function (m, i) {
+      var li = document.createElement("li");
+      li.innerHTML = "<b>" + esc(m.who) + "</b> · " + esc(m.dish);
+      ul.appendChild(li);
+    });
+    $("rsvpChange").onclick = function () { showForm(g, r); };
+  }
+  function showForm(g, prev) {
+    picked = g; persons = { names: [], dishes: [] }; editing = !!prev;
+    hideAllRsvp(); $("rsvpPick").hidden = false;
     $("pickName").textContent = g.n;
     $("pickMax").textContent = g.c === 1 ? "Tu invitación es para 1 persona." : "Tu invitación es para máximo " + g.c + " personas.";
+    $("rsvpGo").textContent = editing ? "Guardar cambios" : "Confirmar asistencia";
     var sel = $("rsvpN"); sel.innerHTML = "";
     for (var i = g.c; i >= 1; i--) sel.add(new Option(i === 1 ? "1 persona" : i + " personas", i));
     sel.add(new Option("No podré asistir", 0));
+    if (prev) {                              // precarga lo que ya había confirmado
+      var n = Number(prev.asistentes) || 0;
+      sel.value = String(Math.min(n, g.c));
+      parseMenu(prev.menu).forEach(function (m, k) {
+        persons.dishes[k] = m.dish;
+        if (k > 0 && !/^Acompañante \d+$/.test(m.who)) persons.names[k] = m.who;
+      });
+    }
     buildMenu(); rebuildPersons();
+  }
+  function pick(g) {
+    picked = g; var token = ++pickToken;
+    if (!C.rsvpEndpoint) { showForm(g); return; }
+    hideAllRsvp(); $("rsvpLoading").hidden = false;
+    lookup(g.n).then(function (r) {
+      if (token !== pickToken) return;
+      if (r && r.found) showDone(g, r); else showForm(g);
+    }).catch(function () { if (token === pickToken) showForm(g); });
   }
   function search() {
     var q = norm($("q").value), list = $("qList");
@@ -86,8 +135,9 @@
     }
   }
   $("q").addEventListener("input", search);
+  $("rsvpKeep").addEventListener("click", function () { $("rsvpBack").click(); });
   $("rsvpBack").addEventListener("click", function () {
-    picked = null; $("rsvpPick").hidden = true; $("rsvpThanks").hidden = true; $("rsvpSearch").hidden = false; $("q").value = ""; $("qList").innerHTML = ""; $("q").focus();
+    picked = null; pickToken++; hideAllRsvp(); $("rsvpSearch").hidden = false; $("q").value = ""; $("qList").innerHTML = ""; $("q").focus();
   });
   $("rsvpGo").addEventListener("click", function () {
     if (!picked) return;
@@ -105,8 +155,8 @@
     }
     err.hidden = true;
     var msg = n === 0
-      ? "Hola, soy " + picked.n + ". Lamentablemente no podré asistir a los XV de " + C.nombreCorto + ". ¡Gracias por la invitación! 💚"
-      : "Hola, soy " + picked.n + ". Confirmo mi asistencia a los XV de " + C.nombreCorto + " el " + C.fechaTexto + ": asistiremos " + n + (n === 1 ? " persona" : " personas") + " (de " + picked.c + " cupos).\n\nMenú:\n" + lines.join("\n") + "\n\n¡Gracias por la invitación! 💚";
+      ? "Hola, soy " + picked.n + (editing ? ". Actualizo mi respuesta: lamentablemente no podré asistir a los XV de " : ". Lamentablemente no podré asistir a los XV de ") + C.nombreCorto + ". ¡Gracias por la invitación! 💚"
+      : "Hola, soy " + picked.n + (editing ? ". Actualizo mi confirmación a los XV de " : ". Confirmo mi asistencia a los XV de ") + C.nombreCorto + " el " + C.fechaTexto + ": asistiremos " + n + (n === 1 ? " persona" : " personas") + " (de " + picked.c + " cupos).\n\nMenú:\n" + lines.join("\n") + "\n\n¡Gracias por la invitación! 💚";
     if (C.rsvpEndpoint) {
       try { fetch(C.rsvpEndpoint, { method: "POST", mode: "no-cors", body: JSON.stringify({ nombre: picked.n, cupos: picked.c, asistentes: n, menu: lines.join(" | "), fecha: new Date().toISOString() }) }); } catch (e) {}
     }
