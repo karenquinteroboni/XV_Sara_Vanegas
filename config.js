@@ -22,10 +22,16 @@ window.CONFIG = {
   musicaTitulo: "Cree y atrévete · Ha*Ash",
 
   // QR / enlace para que los invitados suban fotos (álbum compartido de Drive o Google Fotos).
-  albumUrl: "", // <-- PENDIENTE: pegar el enlace del álbum
+  albumUrl: "https://photos.app.goo.gl/wZFEyfNQCvyuBgQ6A",
 
   // Galería: rutas de imágenes. Se oculta si hay menos de 2.
-  galeria: [],
+  galeria: [
+    { src: "assets/img/g1-rosas.webp", pos: "52% 40%", alt: "Sara Valentina entre las rosas" },
+    { src: "assets/img/g2-fuente.webp", pos: "78% 40%", alt: "Sara Valentina junto a la fuente" },
+    { src: "assets/img/g3-balcon.webp", pos: "25% 40%", alt: "Sara Valentina en el balcón del castillo" },
+    { src: "assets/img/g4-salon.webp", pos: "50% 40%", alt: "Sara Valentina en el salón dorado" },
+    { src: "assets/img/g5-escalera.webp", pos: "76% 40%", alt: "Sara Valentina en la escalera del palacio" }
+  ],
 
   // Opcional: URL del Apps Script que registra confirmaciones en Google Sheets.
   rsvpEndpoint: ""

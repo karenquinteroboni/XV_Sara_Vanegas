@@ -7,12 +7,10 @@ Sitio estático (HTML/CSS/JS). Se publica tal cual en GitHub Pages, Netlify o Ve
 - `INVITADOS.xlsx` → `python3 tools/build_guests.py [URL_BASE]` genera `guests.json` y `links.csv`
   (un enlace personal `?i=codigo` por invitado, con nombre y cupos).
 
-## Pendiente (no está en el repo)
-- `assets/audio/cree-y-atrevete.mp3` — canción (el formulario trae solo enlace de YouTube).
-- `albumUrl` en `config.js` — enlace del álbum compartido; con él aparece la sección y el QR de fotos.
-- Fotos para la galería (`galeria` en `config.js`); sin ellas la sección se oculta.
-- Foto de portada definitiva: se usa provisionalmente `assets/img/portada.webp`.
-- Confirmar si la música inicia en 0:10 o en otro punto (`musicaInicio`).
+## Pendiente
+- Confirmar si la música inicia en 0:10 (`musicaInicio` en `config.js`).
+- El álbum de Google Fotos debe estar compartido con "permitir que otros agreguen fotos"; si no, el QR solo deja ver.
+- Opcional: registrar confirmaciones en Google Sheets (`rsvpEndpoint` en `config.js`).
 
 ## Privacidad
 `guests.json` y `links.csv` contienen nombres de invitados. Si se publica el sitio, `guests.json` queda

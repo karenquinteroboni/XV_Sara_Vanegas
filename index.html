@@ -17,7 +17,7 @@
 </head>
 <body class="locked">
 
-<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
 <div id="butterflies" aria-hidden="true"></div>
 
 <!-- Apertura: sobre -->
@@ -61,9 +61,11 @@
   <header id="inicio" class="hero">
     <div class="hero-img"></div>
     <div class="hero-shade"></div>
+    <div class="rays" aria-hidden="true"></div>
+    <div class="bokeh" id="bokeh" aria-hidden="true"></div>
     <div class="hero-card reveal">
       <p class="eyebrow">Mis</p>
-      <p class="roman big">XV</p>
+      <p class="roman big shimmer">XV</p>
       <h1 class="script">Sara Valentina<br>Vanegas Pompeyo</h1>
       <div class="rule"><span></span><b>✦</b><span></span></div>
       <p class="date-line">7 · XI · MMXXVI</p>
@@ -160,6 +162,7 @@
     <p class="eyebrow reveal">Galería</p>
     <h2 class="script reveal">Momentos</h2>
     <div class="gallery" id="gallery"></div>
+    <p class="reveal note swipe">Desliza →</p>
   </section>
 
   <section id="confirmar" class="sec center rsvp">
@@ -196,7 +199,7 @@
   </footer>
 </main>
 
-<audio id="bgm" loop preload="auto"></audio>
+<audio id="bgm" preload="auto"></audio>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="config.js"></script>
