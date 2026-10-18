@@ -167,6 +167,8 @@
     if (guest) pick(guest);
   }
 
+  [].forEach.call(document.querySelectorAll("[data-deadline]"), function (el) { el.textContent = C.fechaLimiteConfirmar; });
+
   /* ---------- Mapa ---------- */
   $("mapFrame").src = "https://maps.google.com/maps?q=" + encodeURIComponent(C.mapsBusqueda) + "&output=embed";
   $("mapsLink").href = C.mapsUrl;

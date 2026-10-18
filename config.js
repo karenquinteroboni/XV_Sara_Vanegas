@@ -14,6 +14,7 @@ window.CONFIG = {
     { nombre: "Diana", numero: "573132921224" },
     { nombre: "Familia", numero: "573162252587" }
   ],
+  fechaLimiteConfirmar: "31/10/2026",
   dressCode: "Reservado el color verde para la quinceañera",
 
 
