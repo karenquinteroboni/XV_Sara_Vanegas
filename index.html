@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mis XV · Sara Valentina</title>
+<meta name="description" content="Estás invitado a la magia de mis XV años. Sábado 7 de noviembre de 2026 · Ibagué.">
+<meta name="theme-color" content="#2f3a26">
+<meta property="og:title" content="Mis XV · Sara Valentina">
+<meta property="og:description" content="Una promesa de amor escrita entre las estrellas. Acompáñame el 7 de noviembre.">
+<meta property="og:image" content="assets/img/portada.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="locked">
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div id="butterflies" aria-hidden="true"></div>
+
+<!-- Apertura: sobre -->
+<section id="opening" aria-label="Apertura">
+  <div class="op-bg"></div>
+  <div class="envelope">
+    <div class="env-flap"></div>
+    <div class="env-card">
+      <p class="eyebrow">Mis</p>
+      <p class="roman">XV</p>
+      <p class="script op-name">Sara Valentina</p>
+      <p class="op-guest" id="opGuest"></p>
+    </div>
+    <div class="env-front"></div>
+    <button class="seal" id="openBtn" aria-label="Abrir invitación"><span>XV</span></button>
+  </div>
+  <p class="op-hint">Toca el sello para abrir</p>
+</section>
+
+<!-- Menú -->
+<button id="menuBtn" class="menu-btn" aria-label="Menú" aria-expanded="false"><i></i><i></i><i></i></button>
+<button id="soundBtn" class="sound-btn" aria-label="Música" hidden>♪</button>
+<nav id="menu" class="menu" aria-hidden="true">
+  <p class="eyebrow">Menú</p>
+  <a href="#inicio">Inicio</a>
+  <a href="#bienvenida">Bienvenida</a>
+  <a href="#historia">Mi historia</a>
+  <a href="#cuenta">Cuenta regresiva</a>
+  <a href="#evento">El evento</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="#dress">Dress code</a>
+  <a href="#video">Video</a>
+  <a href="#regalos">Lluvia de sobres</a>
+  <a href="#galeria" id="menuGaleria">Galería</a>
+  <a href="#confirmar">Confirmar asistencia</a>
+  <a href="#fotos" id="menuFotos">Fotos de la fiesta</a>
+</nav>
+
+<main>
+  <!-- Portada -->
+  <header id="inicio" class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-shade"></div>
+    <div class="hero-card reveal">
+      <p class="eyebrow">Mis</p>
+      <p class="roman big">XV</p>
+      <h1 class="script">Sara Valentina<br>Vanegas Pompeyo</h1>
+      <div class="rule"><span></span><b>✦</b><span></span></div>
+      <p class="date-line">7 · XI · MMXXVI</p>
+    </div>
+    <a href="#bienvenida" class="scroll-hint" aria-label="Bajar">⌄</a>
+  </header>
+
+  <section id="bienvenida" class="sec center">
+    <div class="orn reveal">✦</div>
+    <p class="eyebrow reveal">Bienvenida</p>
+    <h2 class="script reveal">¡Bienvenidos a la magia<br>de mis XV años!</h2>
+    <div class="prose reveal">
+      <p>Con mucha ilusión y alegría, quiero darte la bienvenida a una noche mágica y muy especial.</p>
+      <p>Ha llegado el momento de celebrar mi historia, escrita con amor, iluminada por la fe y acompañada por las estrellas.</p>
+      <p>Una noche llena de sueños, emociones y momentos inolvidables está por comenzar… y me hace muy feliz que seas parte de ella.</p>
+      <p class="sign">Con cariño,<br><span class="script">Sara Valentina Vanegas Pompeyo</span></p>
+    </div>
+  </section>
+
+  <section id="historia" class="sec center alt">
+    <p class="eyebrow reveal">Mi historia ✨</p>
+    <h2 class="script reveal">Una promesa de amor escrita<br>por Dios entre las estrellas</h2>
+    <div class="prose story reveal">
+      <p>Mi historia comenzó mucho antes de que naciera. Comenzó en un sueño, en una oración y en una promesa de amor que vino del cielo.</p>
+      <p class="hl">Mi historia vive en mi nombre.</p>
+      <p>Sara, princesa de nobleza y fe. Valentina, símbolo de fuerza y valentía.</p>
+      <p>Dos nombres unidos por el amor de mis padres, las bendiciones de Dios y una estrella muy especial que sigue iluminando mi camino desde el cielo.</p>
+      <p>Esa estrella sembró amor, y sus oraciones forman parte de mis raíces. Su luz me sigue acompañando y hoy brilla en mi corazón, recordándome que hay historias de amor que comienzan en la tierra y continúan brillando en el cielo.</p>
+      <p>Hoy, al celebrar mis quince años, quiero compartir contigo un pedacito de mi historia, vivir momentos maravillosos y regalarte una invitación a creer en tus sueños y descubrir la belleza que habita dentro de ti.</p>
+      <p>A lo largo de mi vida, mis padres, abuelos, tíos, mi familia y tantas personas especiales han sembrado amor, alegría, enseñanzas y recuerdos que hoy forman parte de quien soy. Cada abrazo, cada palabra y cada gesto de cariño han dejado una huella en mi corazón.</p>
+      <p>Le doy gracias a Dios por el regalo de la vida, a mis padres por su amor infinito y a cada uno de ustedes por acompañarme y formar parte de mi historia.</p>
+      <p>Mi historia apenas comienza, y qué hermoso es saber que no la escribo sola, sino rodeada de personas que amo y que hacen de cada capítulo algo inolvidable.</p>
+      <p>Gracias infinitas por estar aquí, por compartir mis sueños y por ser parte de este momento tan especial.</p>
+      <p class="sign">Con todo mi cariño<br><span class="script">Sara Valentina</span></p>
+    </div>
+  </section>
+
+  <section id="cuenta" class="sec center count">
+    <p class="eyebrow reveal">7 de noviembre · 7:00 p. m.</p>
+    <h2 class="script reveal">La magia está por comenzar</h2>
+    <div class="clock reveal" id="clock" role="timer" aria-live="off">
+      <div><b id="cd-d">--</b><span>días</span></div>
+      <div><b id="cd-h">--</b><span>horas</span></div>
+      <div><b id="cd-m">--</b><span>minutos</span></div>
+      <div><b id="cd-s">--</b><span>segundos</span></div>
+    </div>
+  </section>
+
+  <section id="evento" class="sec center alt">
+    <p class="eyebrow reveal">El evento</p>
+    <h2 class="script reveal">Una noche para recordar</h2>
+    <ul class="facts reveal">
+      <li><span>Fecha</span><b>Sábado 7 de noviembre de 2026</b></li>
+      <li><span>Hora</span><b>7:00 p. m.</b></li>
+      <li><span>Lugar</span><b>Restaurante Yerbabuena</b></li>
+      <li><span>Ciudad</span><b>Ibagué</b></li>
+    </ul>
+    <p class="note reveal">Acompáñame desde el inicio y seamos parte de cada momento especial.</p>
+  </section>
+
+  <section id="ubicacion" class="sec center">
+    <p class="eyebrow reveal">Ubicación</p>
+    <h2 class="script reveal">Restaurante Yerbabuena</h2>
+    <p class="reveal addr">Carrera 6 # 9-81 · Barrio Belén · Ibagué</p>
+    <div class="map reveal"><iframe id="mapFrame" title="Mapa del evento" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <a id="mapsLink" class="btn reveal" target="_blank" rel="noopener">Cómo llegar</a>
+  </section>
+
+  <section id="dress" class="sec center alt">
+    <p class="eyebrow reveal">Dress code</p>
+    <h2 class="script reveal">Elegancia de gala</h2>
+    <div class="swatches reveal" aria-hidden="true"><i style="--c:#c9a96a"></i><i style="--c:#e6d6b0"></i><i style="--c:#f3ead8"></i><i style="--c:#7d8b62"></i></div>
+    <p class="reveal note">El color verde está reservado para la quinceañera.</p>
+  </section>
+
+  <section id="video" class="sec center">
+    <p class="eyebrow reveal">Un pedacito de magia</p>
+    <h2 class="script reveal">Mira esto</h2>
+    <div class="video-wrap reveal">
+      <video id="vid" controls playsinline preload="metadata" poster="assets/img/portada.webp">
+        <source src="assets/video/invitacion.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section id="regalos" class="sec center alt">
+    <p class="eyebrow reveal">Lluvia de sobres</p>
+    <h2 class="script reveal">Tu presencia es mi mejor regalo</h2>
+    <p class="reveal prose-sm">Si deseas tener un detalle conmigo, agradeceré una lluvia de sobres. Para coordinar la entrega, escríbenos por WhatsApp.</p>
+    <a id="giftLink" class="btn ghost reveal" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+  </section>
+
+  <section id="galeria" class="sec center" hidden>
+    <p class="eyebrow reveal">Galería</p>
+    <h2 class="script reveal">Momentos</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="confirmar" class="sec center rsvp">
+    <div class="orn reveal">✦</div>
+    <p class="eyebrow reveal">Reserva la fecha</p>
+    <h2 class="script reveal">¿Nos acompañas?</h2>
+    <p class="reveal prose-sm" id="rsvpText">Tu presencia hará que esta noche sea aún más especial. Confirma tu asistencia por WhatsApp.</p>
+    <div class="cupos reveal" id="cuposBox" hidden></div>
+    <div class="rsvp-btns reveal" id="rsvpBtns"></div>
+    <div class="reveal rsvp-extra" id="rsvpExtra" hidden>
+      <label>Nº de personas que asistirán
+        <select id="rsvpN"></select>
+      </label>
+    </div>
+  </section>
+
+  <section id="fotos" class="sec center alt" hidden>
+    <p class="eyebrow reveal">Recuerdos</p>
+    <h2 class="script reveal">Comparte las fotos de la fiesta</h2>
+    <p class="reveal prose-sm">Escanea el código o toca el botón para subir tus fotos y videos al álbum de mis XV.</p>
+    <div id="qr" class="qr reveal"></div>
+    <a id="albumLink" class="btn reveal" target="_blank" rel="noopener">Subir fotos</a>
+  </section>
+
+  <footer class="sec center bye">
+    <div class="orn">✦</div>
+    <h2 class="script">Gracias por ser parte<br>de mi historia</h2>
+    <div class="prose">
+      <p>Mi historia apenas comienza, y me hace feliz que seas parte de este capítulo tan especial.</p>
+      <p>Que esta noche deje una huella en tu corazón y te inspire a seguir soñando, creyendo y haciendo brillar tu propia historia.</p>
+      <p class="sign">Con amor,<br><span class="script">Sara Valentina</span></p>
+    </div>
+    <p class="roman small">XV</p>
+  </footer>
+</main>
+
+<audio id="bgm" loop preload="auto"></audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="config.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
