@@ -81,7 +81,6 @@
   if (C.albumUrl) {
     $("fotos").hidden = false;
     $("albumLink").href = C.albumUrl;
-    if (window.QRCode) new QRCode($("qr"), { text: C.albumUrl, width: 180, height: 180, colorDark: "#2f3a26", colorLight: "#ffffff" });
   } else {
     $("menuFotos").hidden = true;
   }
