@@ -181,9 +181,9 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 
 .env-card .roman{font-size:2.2rem}
 .hero-logo{position:absolute;top:16px;left:50%;transform:translateX(-50%);height:54px;width:auto;z-index:2;opacity:.95;filter:drop-shadow(0 1px 8px rgba(0,0,0,.4))}
-.bye-logo{height:52px;width:auto;margin-top:1.8rem;opacity:.32}
+.bye-logo{height:52px;width:auto;margin-top:1.8rem;opacity:.45}
 
-.card-wm{position:absolute;left:50%;top:50%;width:52%;max-width:150px;transform:translate(-50%,-50%);opacity:.09;pointer-events:none}
+.card-wm{position:absolute;left:50%;top:50%;width:40%;max-width:120px;transform:translate(-50%,-50%);opacity:.16;pointer-events:none}
 .env-card>*:not(.card-wm){position:relative}
 /* Portada legible: panel translúcido con filete dorado */
 .hero-card{background:rgba(29,37,24,.5);border:1px solid rgba(201,169,106,.7);padding:1.1rem 1.4rem 1.3rem;margin:0 1.2rem 4.6rem;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);max-width:min(92vw,480px)}
@@ -216,7 +216,7 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .sec h2{font-size:clamp(2.2rem,9vw,3.4rem);-webkit-text-stroke:.5px currentColor;paint-order:stroke fill}
 
 /* ===== XV dorado, grande y victoriano ===== */
-.victorian{font-family:"Cinzel Decorative","Cinzel",serif!important;font-weight:900;letter-spacing:.06em;
+.victorian{font-family:var(--display)!important;font-weight:500;letter-spacing:.1em;
   background:linear-gradient(180deg,#fff3c4 0%,#f0cf6a 28%,#c9992f 52%,#8f6a1c 66%,#e9c866 88%,#fff0b0 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
   filter:drop-shadow(0 1px 0 rgba(90,60,0,.9)) drop-shadow(0 3px 6px rgba(0,0,0,.45)) drop-shadow(0 0 16px rgba(255,214,120,.35))}
@@ -272,3 +272,11 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .plabel{font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#8f6f2c;margin-bottom:.4rem}
 .person input{margin-bottom:.5rem}
 .rsvp-err{color:#8a2f2f;font-weight:500;text-align:center;margin:.2rem 0 1rem}
+
+/* ===== Al abrir: brillos con humo sutil saliendo del sello ===== */
+.burst{position:absolute;left:50%;top:48%;width:0;height:0;z-index:7;pointer-events:none}
+.burst i{position:absolute;left:0;top:0;display:block;opacity:0;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2)}
+.burst .sp{color:#ffe9a8;filter:drop-shadow(0 0 6px rgba(255,214,120,.95));animation:bsp var(--t) ease-out var(--d) forwards}
+.burst .sm{border-radius:50%;background:radial-gradient(circle,rgba(242,232,208,.6),rgba(242,232,208,0) 68%);filter:blur(9px);animation:bsm var(--t) ease-out var(--d) forwards}
+@keyframes bsp{0%{transform:translate(0,0) scale(.2) rotate(0);opacity:0}15%{opacity:1}70%{opacity:.9}100%{transform:translate(var(--dx),var(--dy)) scale(1) rotate(80deg);opacity:0}}
+@keyframes bsm{0%{transform:translate(0,0) scale(.3);opacity:0}25%{opacity:.85}100%{transform:translate(var(--dx),var(--dy)) scale(2.6);opacity:0}}

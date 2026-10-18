@@ -169,8 +169,23 @@
 
   /* ---------- Apertura ---------- */
   var opening = $("opening");
+  var SPB = '<svg viewBox="0 0 20 20"><path d="M10 0c.7 5.5 4.5 9.3 10 10-5.5.7-9.3 4.5-10 10-.7-5.5-4.5-9.3-10-10 5.5-.7 9.3-4.5 10-10z" fill="currentColor"/></svg>';
+  function burstFx() {
+    var box = $("burst"), h = "", i, a, r;
+    if (!box || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+    for (i = 0; i < 9; i++) {              // humo sutil: bocanadas suaves que suben y se expanden
+      a = (Math.random() - .5) * 1.6 - 1.57; r = 60 + Math.random() * 90;
+      h += '<i class="sm" style="--s:' + Math.round(70 + Math.random() * 70) + 'px;--dx:' + Math.round(Math.cos(a) * r) + 'px;--dy:' + Math.round(Math.sin(a) * r - 30) + 'px;--t:' + (1.8 + Math.random() * .8).toFixed(2) + 's;--d:' + (Math.random() * .25).toFixed(2) + 's"></i>';
+    }
+    for (i = 0; i < 34; i++) {             // brillos en todas direcciones
+      a = Math.random() * 6.283; r = 70 + Math.random() * 150;
+      h += '<i class="sp" style="--s:' + Math.round(6 + Math.random() * 13) + 'px;--dx:' + Math.round(Math.cos(a) * r) + 'px;--dy:' + Math.round(Math.sin(a) * r - 20) + 'px;--t:' + (1.1 + Math.random() * 1).toFixed(2) + 's;--d:' + (Math.random() * .35).toFixed(2) + 's">' + SPB + '</i>';
+    }
+    box.innerHTML = h;
+  }
   $("openBtn").addEventListener("click", function () {
     opening.classList.add("open");
+    burstFx();
     if (C.musica) {
       try {
         bgm.volume = 0.7;
@@ -185,7 +200,7 @@
       document.body.classList.remove("locked");
       window.scrollTo(0, 0);
       revealNow();
-    }, 1900);
+    }, 2400);
   });
 
   /* ---------- Apertura: luz, estrellitas, neblina y mariposas volando ---------- */
