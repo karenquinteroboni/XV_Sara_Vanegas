@@ -209,3 +209,66 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .fairy .wl{transform-origin:100% 50%}.fairy .wr{transform-origin:0 50%}
 @keyframes wing{from{scale:1 1}to{scale:1 .45}}
 @keyframes pulse2{50%{scale:1.25;opacity:.7}}
+
+/* ===== Títulos de sección más grandes y en negrita ===== */
+.sec .eyebrow{font-family:var(--display);font-size:1.02rem;font-weight:700;letter-spacing:.24em;color:#8f6f2c}
+.count .eyebrow{color:#e3c377}
+.sec h2{font-size:clamp(2.2rem,9vw,3.4rem);-webkit-text-stroke:.5px currentColor;paint-order:stroke fill}
+
+/* ===== XV dorado, grande y victoriano ===== */
+.victorian{font-family:"Cinzel Decorative","Cinzel",serif!important;font-weight:900;letter-spacing:.06em;
+  background:linear-gradient(180deg,#fff3c4 0%,#f0cf6a 28%,#c9992f 52%,#8f6a1c 66%,#e9c866 88%,#fff0b0 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(90,60,0,.9)) drop-shadow(0 3px 6px rgba(0,0,0,.45)) drop-shadow(0 0 16px rgba(255,214,120,.35))}
+.hero-card .roman.big{font-size:clamp(5.2rem,27vw,9rem);line-height:.95;margin:.05em 0 .1em;text-shadow:none}
+.xv-wrap{display:flex;align-items:center;justify-content:center;gap:.7rem}
+.xv-wrap::before,.xv-wrap::after{content:"";flex:1;height:1px;max-width:54px;background:linear-gradient(90deg,transparent,#d9b86a)}
+.xv-wrap::after{transform:scaleX(-1)}
+.env-card .roman.victorian{font-size:2.9rem;line-height:1.05}
+
+/* ===== Apertura: luz, estrellitas, neblina y mariposas ===== */
+.op-bg::before{content:"";position:absolute;inset:-8%;background:url(../img/portada.webp) 44% 45%/cover no-repeat;opacity:.3;filter:blur(2.5px) saturate(1.1);animation:kb 22s ease-in-out infinite alternate}
+.op-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 42%,rgba(255,226,160,.22),transparent 58%),linear-gradient(180deg,rgba(29,37,24,.5),rgba(29,37,24,.15) 40%,rgba(29,37,24,.7))}
+.op-fx{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.op-fx .rays{inset:-40%;background:conic-gradient(from 190deg at 50% 38%,transparent 0 5%,rgba(255,226,160,.20) 8%,transparent 12%,rgba(255,226,160,.14) 17%,transparent 23%,rgba(255,226,160,.18) 29%,transparent 35%,rgba(255,226,160,.12) 42%,transparent 48%);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.smoke{position:absolute;bottom:-18%;width:78vw;max-width:560px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(238,226,196,.34),rgba(238,226,196,0) 66%);filter:blur(22px);opacity:0;animation:smoke 16s ease-in-out infinite}
+@keyframes smoke{0%{transform:translate(-6%,8%) scale(.8);opacity:0}25%{opacity:.85}100%{transform:translate(14%,-52%) scale(1.35);opacity:0}}
+.ost{position:absolute;color:#f1d98c;filter:drop-shadow(0 0 5px rgba(255,214,120,.95));animation:twinkle 3s ease-in-out infinite}
+.obf{position:absolute;bottom:-8%;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));animation:obf linear infinite}
+.obf svg{display:block;width:100%;animation:flap .5s ease-in-out infinite alternate}
+@keyframes obf{
+  0%{transform:translate(0,0) rotate(6deg);opacity:0}
+  8%{opacity:.95}
+  30%{transform:translate(16vw,-34vh) rotate(-12deg)}
+  55%{transform:translate(-14vw,-64vh) rotate(10deg)}
+  80%{transform:translate(12vw,-92vh) rotate(-8deg);opacity:.95}
+  100%{transform:translate(0,-118vh) rotate(6deg);opacity:0}}
+.seal{width:104px;height:104px;margin:-52px 0 0 -52px;padding:0;background:none;box-shadow:0 8px 22px rgba(0,0,0,.5),0 0 0 2px rgba(255,236,170,.25)}
+.seal img{display:block;width:100%;height:100%;border-radius:50%}
+@media (prefers-reduced-motion:reduce){.op-fx .rays,.smoke,.obf{animation:none}.smoke{opacity:.4}}
+
+/* ===== Íconos dorados: vestuario y lluvia de sobres ===== */
+.icons{display:flex;justify-content:center;gap:.7rem;margin-bottom:.7rem}
+.icons.single{margin-bottom:1rem}
+.ico{width:62px;height:62px;filter:drop-shadow(0 1px 2px rgba(110,80,20,.25))}
+.icons.single .ico{width:70px;height:70px}
+.dress-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:560px!important;margin:1.6rem auto 0!important}
+.dcol{padding:0 .9rem}
+.dcol+.dcol{border-left:1px solid rgba(168,136,74,.55)}
+.dtitle{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#8f6f2c;margin-bottom:.35rem}
+.dtext{font-size:1.28rem;line-height:1.35;color:var(--olive);font-weight:500}
+
+/* ===== Menú por persona en la confirmación ===== */
+.rsvp-box{max-width:480px}
+.menublock{margin:0 0 1.2rem;text-align:left}
+.menu-h{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase;color:#8f6f2c;text-align:center;margin-bottom:.3rem}
+.menu-sub{text-align:center;font-style:italic;margin-bottom:1rem;font-size:1rem}
+.dishes{list-style:none;margin-bottom:1.2rem}
+.dishes li{padding:.75rem .2rem;border-bottom:1px solid rgba(168,136,74,.3)}
+.dishes b{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;letter-spacing:.06em;color:var(--olive);margin-bottom:.15rem}
+.dishes span{display:block;font-size:.98rem;line-height:1.45;color:#4a5538}
+.person{margin-bottom:1rem}
+.plabel{font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#8f6f2c;margin-bottom:.4rem}
+.person input{margin-bottom:.5rem}
+.rsvp-err{color:#8a2f2f;font-weight:500;text-align:center;margin:.2rem 0 1rem}

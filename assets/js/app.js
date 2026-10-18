@@ -22,14 +22,51 @@
   function waUrl(num, msg) { return "https://wa.me/" + num + "?text=" + encodeURIComponent(msg); }
   function norm(t) { return t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim(); }
 
+  var persons = { names: [], dishes: [] };
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function buildMenu() {
+    var ul = $("dishList"); ul.innerHTML = "";
+    (C.menu || []).forEach(function (m) {
+      var li = document.createElement("li");
+      li.innerHTML = "<b>" + esc(m.n) + "</b><span>" + esc(m.d) + "</span>";
+      ul.appendChild(li);
+    });
+  }
+  function rebuildPersons() {
+    var n = parseInt($("rsvpN").value, 10), box = $("persons");
+    $("menuBlock").hidden = !(n > 0); $("rsvpErr").hidden = true;
+    box.innerHTML = "";
+    for (var k = 0; k < n; k++) (function (k) {
+      var row = document.createElement("div"); row.className = "person";
+      var lab = document.createElement("p"); lab.className = "plabel";
+      lab.textContent = k === 0 ? "Persona 1 · " + picked.n : "Persona " + (k + 1);
+      row.appendChild(lab);
+      if (k > 0) {
+        var inp = document.createElement("input"); inp.type = "text"; inp.placeholder = "Nombre (opcional)"; inp.maxLength = 60;
+        inp.value = persons.names[k] || "";
+        inp.addEventListener("input", function () { persons.names[k] = inp.value; });
+        row.appendChild(inp);
+      }
+      var sel = document.createElement("select"); sel.setAttribute("aria-label", "Plato de la persona " + (k + 1));
+      sel.add(new Option("Elige el plato…", ""));
+      (C.menu || []).forEach(function (m) { sel.add(new Option(m.n, m.n)); });
+      sel.value = persons.dishes[k] || "";
+      sel.addEventListener("change", function () { persons.dishes[k] = sel.value; $("rsvpErr").hidden = true; });
+      row.appendChild(sel); box.appendChild(row);
+    })(k);
+  }
+  $("rsvpN").addEventListener("change", rebuildPersons);
+
   function pick(g) {
-    picked = g;
+    picked = g; persons = { names: [], dishes: [] };
     $("rsvpSearch").hidden = true; $("rsvpThanks").hidden = true; $("rsvpPick").hidden = false;
     $("pickName").textContent = g.n;
     $("pickMax").textContent = g.c === 1 ? "Tu invitación es para 1 persona." : "Tu invitación es para máximo " + g.c + " personas.";
     var sel = $("rsvpN"); sel.innerHTML = "";
     for (var i = g.c; i >= 1; i--) sel.add(new Option(i === 1 ? "1 persona" : i + " personas", i));
     sel.add(new Option("No podré asistir", 0));
+    buildMenu(); rebuildPersons();
   }
   function search() {
     var q = norm($("q").value), list = $("qList");
@@ -54,13 +91,24 @@
   });
   $("rsvpGo").addEventListener("click", function () {
     if (!picked) return;
-    var n = parseInt($("rsvpN").value, 10);
+    var n = parseInt($("rsvpN").value, 10), err = $("rsvpErr");
     if (isNaN(n) || n < 0 || n > picked.c) return;
+    var lines = [];
+    for (var k = 0; k < n; k++) {
+      if (!persons.dishes[k]) {
+        err.textContent = "Elige el plato de la persona " + (k + 1) + " para continuar."; err.hidden = false;
+        var sels = $("persons").querySelectorAll("select"); if (sels[k]) sels[k].focus();
+        return;
+      }
+      var who = k === 0 ? picked.n : ((persons.names[k] || "").trim() || "Acompañante " + (k + 1));
+      lines.push((k + 1) + ". " + who + ": " + persons.dishes[k]);
+    }
+    err.hidden = true;
     var msg = n === 0
       ? "Hola, soy " + picked.n + ". Lamentablemente no podré asistir a los XV de " + C.nombreCorto + ". ¡Gracias por la invitación! 💚"
-      : "Hola, soy " + picked.n + ". Confirmo mi asistencia a los XV de " + C.nombreCorto + " el " + C.fechaTexto + ": asistiremos " + n + (n === 1 ? " persona" : " personas") + " (de " + picked.c + " cupos). ¡Gracias por la invitación! 💚";
+      : "Hola, soy " + picked.n + ". Confirmo mi asistencia a los XV de " + C.nombreCorto + " el " + C.fechaTexto + ": asistiremos " + n + (n === 1 ? " persona" : " personas") + " (de " + picked.c + " cupos).\n\nMenú:\n" + lines.join("\n") + "\n\n¡Gracias por la invitación! 💚";
     if (C.rsvpEndpoint) {
-      try { fetch(C.rsvpEndpoint, { method: "POST", mode: "no-cors", body: JSON.stringify({ nombre: picked.n, cupos: picked.c, asistentes: n, fecha: new Date().toISOString() }) }); } catch (e) {}
+      try { fetch(C.rsvpEndpoint, { method: "POST", mode: "no-cors", body: JSON.stringify({ nombre: picked.n, cupos: picked.c, asistentes: n, menu: lines.join(" | "), fecha: new Date().toISOString() }) }); } catch (e) {}
     }
     window.open(waUrl(C.whatsapp[0].numero, msg), "_blank", "noopener");
     $("rsvpThanks").hidden = false;
@@ -139,6 +187,19 @@
       revealNow();
     }, 1900);
   });
+
+  /* ---------- Apertura: luz, estrellitas, neblina y mariposas volando ---------- */
+  (function () {
+    var fx = $("opFx"); if (!fx || reduce0()) return;
+    function reduce0() { return matchMedia("(prefers-reduced-motion:reduce)").matches; }
+    var BFO = '<svg viewBox="0 0 60 50"><g fill="#d9b86a" stroke="#8f7233" stroke-width=".8"><path d="M30 25C22 8 6 2 3 12c-3 11 8 18 27 13z"/><path d="M30 25C38 8 54 2 57 12c3 11-8 18-27 13z"/><path d="M30 25C20 32 10 44 17 47c8 2 12-9 13-22z" fill="#f1e2b8"/><path d="M30 25c10 7 20 19 13 22-8 2-12-9-13-22z" fill="#f1e2b8"/></g><rect x="29" y="14" width="2" height="26" rx="1" fill="#6b5320"/></svg>';
+    var SP = '<svg viewBox="0 0 20 20"><path d="M10 0c.7 5.5 4.5 9.3 10 10-5.5.7-9.3 4.5-10 10-.7-5.5-4.5-9.3-10-10 5.5-.7 9.3-4.5 10-10z" fill="currentColor"/></svg>';
+    var h = "", i;
+    for (i = 0; i < 5; i++) h += '<span class="smoke" style="left:' + (-10 + i * 24) + '%;animation-delay:' + (-i * 3.4) + 's;animation-duration:' + (15 + i * 2) + 's"></span>';
+    for (i = 0; i < 22; i++) h += '<span class="ost" style="left:' + Math.round(Math.random() * 96) + '%;top:' + Math.round(Math.random() * 96) + '%;width:' + (6 + Math.random() * 9).toFixed(1) + 'px;animation-delay:' + (-Math.random() * 4).toFixed(2) + 's;animation-duration:' + (2.2 + Math.random() * 2.4).toFixed(2) + 's">' + SP + '</span>';
+    for (i = 0; i < 7; i++) h += '<span class="obf" style="left:' + (4 + i * 14) + '%;width:' + (24 + (i % 3) * 8) + 'px;animation-delay:' + (-i * 3.1).toFixed(1) + 's;animation-duration:' + (17 + (i % 4) * 3) + 's">' + BFO + '</span>';
+    fx.insertAdjacentHTML("beforeend", h);
+  })();
 
   /* ---------- Menú ---------- */
   var menu = $("menu"), mb = $("menuBtn");

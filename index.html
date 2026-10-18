@@ -12,28 +12,32 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="locked">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="64" y2="64"><stop offset="0" stop-color="#f1d98c"/><stop offset=".5" stop-color="#c9a24a"/><stop offset="1" stop-color="#9a7428"/></linearGradient>
+</defs></svg>
 
 <canvas id="fx" aria-hidden="true"></canvas>
 
 <!-- Apertura: sobre -->
 <section id="opening" aria-label="Apertura">
   <div class="op-bg"></div>
+  <div class="op-fx" id="opFx" aria-hidden="true"><div class="rays"></div></div>
   <div class="envelope">
     <div class="env-flap"></div>
     <div class="env-card">
       <img class="card-wm" src="assets/img/logo-olive.png" alt="">
       <p class="eyebrow">Mis</p>
-      <p class="roman">XV</p>
+      <p class="roman victorian">XV</p>
       <p class="script op-name">Sara Valentina</p>
       <p class="op-date">7 . 11 . 2026</p>
     </div>
     <div class="env-front"></div>
-    <button class="seal" id="openBtn" aria-label="Abrir invitación"><span>XV</span></button>
+    <button class="seal" id="openBtn" aria-label="Abrir invitación"><img src="assets/img/sello-xv.png" alt="Sello Mis XV"></button>
   </div>
   <p class="op-hint">Toca el sello para abrir</p>
 </section>
@@ -65,7 +69,7 @@
     <img class="hero-logo" src="assets/img/logo-champagne.png" alt="Logo SV">
     <div class="hero-card reveal">
       <p class="eyebrow">Mis</p>
-      <p class="roman big shimmer">XV</p>
+      <div class="xv-wrap"><p class="roman big victorian">XV</p></div>
       <h1 class="script">Sara Valentina<br>Vanegas Pompeyo</h1>
       <div class="rule"><span></span><b>✦</b><span></span></div>
       <p class="date-line">7 . 11 . 2026</p>
@@ -87,19 +91,14 @@
 
   <section id="historia" class="sec center alt">
     <p class="eyebrow reveal">Mi historia ✨</p>
-    <h2 class="script reveal">Una promesa de amor escrita<br>por Dios entre las estrellas</h2>
+    <h2 class="script reveal">Una promesa de amor escrita por Dios entre las estrellas</h2>
     <div class="prose story reveal">
-      <p>Mi historia comenzó mucho antes de que naciera. Comenzó en un sueño, en una oración y en una promesa de amor que vino del cielo.</p>
-      <p class="hl">Mi historia vive en mi nombre.</p>
-      <p>Sara, princesa de nobleza y fe. Valentina, símbolo de fuerza y valentía.</p>
-      <p>Dos nombres unidos por el amor de mis padres, las bendiciones de Dios y una estrella muy especial que sigue iluminando mi camino desde el cielo.</p>
-      <p>Esa estrella sembró amor, y sus oraciones forman parte de mis raíces. Su luz me sigue acompañando y hoy brilla en mi corazón, recordándome que hay historias de amor que comienzan en la tierra y continúan brillando en el cielo.</p>
-      <p>Hoy, al celebrar mis quince años, quiero compartir contigo un pedacito de mi historia, vivir momentos maravillosos y regalarte una invitación a creer en tus sueños y descubrir la belleza que habita dentro de ti.</p>
-      <p>A lo largo de mi vida, mis padres, abuelos, tíos, mi familia y tantas personas especiales han sembrado amor, alegría, enseñanzas y recuerdos que hoy forman parte de quien soy. Cada abrazo, cada palabra y cada gesto de cariño han dejado una huella en mi corazón.</p>
-      <p>Le doy gracias a Dios por el regalo de la vida, a mis padres por su amor infinito y a cada uno de ustedes por acompañarme y formar parte de mi historia.</p>
-      <p>Mi historia apenas comienza, y qué hermoso es saber que no la escribo sola, sino rodeada de personas que amo y que hacen de cada capítulo algo inolvidable.</p>
-      <p>Gracias infinitas por estar aquí, por compartir mis sueños y por ser parte de este momento tan especial.</p>
-      <p class="sign">Con todo mi cariño<br><span class="script">Sara Valentina</span></p>
+      <p>Mi historia comenzó antes de nacer, en un sueño, una oración y una promesa de amor que vino del cielo.</p>
+      <p>Vive en mi nombre: Sara, princesa de nobleza y fe; Valentina, símbolo de fuerza y valentía. Dos nombres unidos por el amor de mis padres, las bendiciones de Dios y una estrella especial cuyas oraciones forman parte de mis raíces. Su luz ilumina mi camino y me recuerda que hay amores que comienzan en la tierra y siguen brillando en el cielo.</p>
+      <p>He crecido rodeada de mis padres, abuelos, tíos y personas especiales que, con su cariño, alegría y enseñanzas, han dejado huellas en quien soy.</p>
+      <p class="hl">Hoy quiero invitarte a creer en tus sueños.</p>
+      <p>Mi historia apenas comienza, y qué hermoso es escribirla junto a quienes amo.</p>
+      <p class="sign">Con todo mi cariño,<br><span class="script">Sara Valentina</span></p>
     </div>
   </section>
 
@@ -136,8 +135,19 @@
 
   <section id="dress" class="sec center alt">
     <p class="eyebrow reveal">Dress code</p>
-    <h2 class="script reveal">Elegancia de gala</h2>
-        <p class="reveal dress-text">El color verde está reservado para la quinceañera.</p>
+    <h2 class="script reveal">Código de vestuario</h2>
+    <div class="dress-grid reveal">
+      <div class="dcol">
+        <div class="icons"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="url(#gold)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M25 5l7 9 7-9 2 21c10 7 16 20 18 32H5c2-12 8-25 18-32z"/><path d="M23 26h18M32 14v12"/><path d="M12 52c8 2 16 3 20 3s12-1 20-3" opacity=".6"/></svg><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="url(#gold)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M22 7l10 7 10-7 14 7-4 45H12L8 14z"/><path d="M32 14l-8 20 8 25 8-25z"/><path d="M26 11l6 4 6-4v7l-6-3-6 3z" fill="url(#gold)"/><path d="M34 36h0M34 44h0" stroke-width="3"/></svg></div>
+        <p class="dtitle">Invitados</p>
+        <p class="dtext">Atuendo elegante</p>
+      </div>
+      <div class="dcol">
+        <div class="icons"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="url(#gold)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M9 47L6 20l15 12 11-19 11 19 15-12-3 27z"/><path d="M9 53h46"/><circle cx="6" cy="19" r="2.2" fill="url(#gold)"/><circle cx="32" cy="12" r="2.2" fill="url(#gold)"/><circle cx="58" cy="19" r="2.2" fill="url(#gold)"/></svg></div>
+        <p class="dtitle">Reservado</p>
+        <p class="dtext">El color verde está reservado para la quinceañera</p>
+      </div>
+    </div>
   </section>
 
   <section id="video" class="banner" aria-label="Video">
@@ -147,6 +157,7 @@
   </section>
 
   <section id="regalos" class="sec center alt">
+    <div class="icons single reveal"><svg class="ico" viewBox="0 0 64 64" fill="none" stroke="url(#gold)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><rect x="7" y="14" width="50" height="36" rx="3"/><path d="M7 17l25 19 25-19"/><path d="M32 46c-5-3-8-6-8-9a4 4 0 018-1 4 4 0 018 1c0 3-3 6-8 9z" fill="url(#gold)" stroke="none" transform="translate(0 -4) scale(1)"/></svg></div>
     <p class="eyebrow reveal">Lluvia de sobres</p>
     <h2 class="script reveal">Tu presencia es mi mejor regalo</h2>
     <p class="reveal prose-sm">Si deseas tener un detalle conmigo, agradeceré una lluvia de sobres.</p>
@@ -177,6 +188,13 @@
         <label class="nlabel">¿Cuántas personas asistirán?
           <select id="rsvpN"></select>
         </label>
+        <div id="menuBlock" class="menublock" hidden>
+          <h3 class="menu-h">Menú de platos fuertes</h3>
+          <p class="menu-sub">Elige el plato de cada persona.</p>
+          <ul class="dishes" id="dishList"></ul>
+          <div id="persons"></div>
+        </div>
+        <p id="rsvpErr" class="rsvp-err" role="alert" hidden></p>
         <button class="btn" id="rsvpGo" type="button">Confirmar asistencia</button>
         <p><button class="linkbtn" id="rsvpBack" type="button">No soy yo · buscar otro nombre</button></p>
       </div>

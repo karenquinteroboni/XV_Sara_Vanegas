@@ -16,6 +16,17 @@ window.CONFIG = {
   ],
   dressCode: "Reservado el color verde para la quinceañera",
 
+
+  // Menú de platos fuertes (cada invitado elige uno por persona).
+  menu: [
+    { n: "Filet Mignon", d: "Medallones de res albardados con tocineta, bañados en salsa Mignon. Acompañados de ensalada fresca (aguacate, zanahoria, tomates cherry y pepino sobre una cama de lechugas, con vinagreta de la casa) y papas en casco a la provenzal." },
+    { n: "Petit Mignon", d: "Medallones de pechuga de pollo albardados con tocineta, bañados en salsa de champiñones. Acompañados de un mix de espárragos y zanahorias baby salteados en salsa meunière y pasta al burro." },
+    { n: "Porchetta de Cerdo Especiada", d: "Porchetta de cerdo sazonada con una selección de especias y hierbas aromáticas. Acompañada de papa criolla dorada y ensalada tipo ceviche." },
+    { n: "Filete de Salmón a la Plancha", d: "Filete de salmón a la plancha, acompañado de ensalada César y un ligero puré de papa." },
+    { n: "Filete de Salmón en Salsa de Naranja", d: "Filete de salmón bañado en una delicada salsa de naranja. Acompañado de un mix de espárragos y zanahorias baby salteados en salsa meunière y papas en casco a la provenzal." },
+    { n: "Pollo al Cilantro", d: "Escalopes de pechuga de pollo marinados al cilantro, acompañados de ensalada César y papas en casco a la provenzal." }
+  ],
+
   // Música: pon el archivo en assets/audio/ y ajusta el segundo de inicio.
   musica: "assets/audio/cree-y-atrevete.mp3",
   musicaInicio: 0, // segundos desde donde arranca la canción al abrir la tarjeta

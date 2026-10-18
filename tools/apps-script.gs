@@ -8,11 +8,13 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sh = ss.getSheetByName("Confirmaciones") || ss.insertSheet("Confirmaciones");
     if (sh.getLastRow() === 0) {
-      sh.appendRow(["Fecha", "Nombre", "Cupos", "Asistirán"]);
+      sh.appendRow(["Fecha", "Nombre", "Cupos", "Asistirán", "Menú"]);
       sh.setFrozenRows(1);
+    } else if (sh.getRange(1, 5).getValue() === "") {
+      sh.getRange(1, 5).setValue("Menú");
     }
     var fecha = Utilities.formatDate(new Date(), "America/Bogota", "yyyy-MM-dd HH:mm");
-    sh.appendRow([fecha, String(d.nombre || ""), Number(d.cupos) || 0, Number(d.asistentes) || 0]);
+    sh.appendRow([fecha, String(d.nombre || ""), Number(d.cupos) || 0, Number(d.asistentes) || 0, String(d.menu || "")]);
     return ContentService.createTextOutput("ok");
   } finally {
     lock.releaseLock();
