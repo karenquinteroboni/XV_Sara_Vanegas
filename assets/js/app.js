@@ -171,12 +171,13 @@
   var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
   var cv = $("fx"), cx = cv.getContext("2d"), W = 0, H = 0, DPR = Math.min(devicePixelRatio || 1, 2);
   var stars = [], dust = [], fairies = [], T = 0;
+  function edgeX() { var band = W * .1; return Math.random() < .5 ? Math.random() * band : W - Math.random() * band; }
   function size() {
     W = innerWidth; H = innerHeight;
     cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0);
     stars = [];
     var n = Math.round(W * H / 22000);
-    for (var i = 0; i < n; i++) stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.2 + .3, p: Math.random() * 6.28, v: Math.random() * .03 + .01 });
+    for (var i = 0; i < n; i++) stars.push({ x: edgeX(), y: Math.random() * H, r: Math.random() * 1.2 + .3, p: Math.random() * 6.28, v: Math.random() * .03 + .01 });
   }
   function spark(x, y, o) {
     o = o || {};
@@ -193,11 +194,11 @@
     }
   }
   function makeFairy(i) {
-    return { a: .21 + i * .07, b: .17 + i * .05, p: i * 2.1, q: i * 1.3, cx: .25 + i * .25, cy: .3 + i * .2, rx: .22 + i * .04, ry: .26, x: 0, y: 0, ang: 0 };
+    return { side: i % 2, a: .21 + i * .07, b: .17 + i * .05, p: i * 2.1, q: i * 1.3, cx: .25 + i * .25, cy: .3 + i * .2, rx: .22 + i * .04, ry: .26, x: 0, y: 0, ang: 0 };
   }
   function drawFairy(f) {
     var t = T * .003;
-    var nx = W * (f.cx + f.rx * Math.sin(t * f.a * 6 + f.p)), ny = H * (f.cy + f.ry * Math.sin(t * f.b * 6 + f.q) * Math.cos(t * .7 + f.p));
+    var nx = (f.side ? W * .94 : W * .06) + W * .035 * Math.sin(t * f.a * 6 + f.p), ny = H * (f.cy + f.ry * Math.sin(t * f.b * 6 + f.q) * Math.cos(t * .7 + f.p));
     f.ang = Math.atan2(ny - f.y, nx - f.x); f.x = nx; f.y = ny;
     spark(f.x + (Math.random() - .5) * 6, f.y + 4, { max: 55, r: Math.random() * 1.6 + .5, spread: .6, vy: .25 });
     if (Math.random() < .2) spark(f.x, f.y + 4, { max: 40, r: .9, spread: .9, vy: .35 });
@@ -220,7 +221,7 @@
       s.p += s.v; var a = .1 + .4 * Math.abs(Math.sin(s.p));
       cx.fillStyle = "rgba(255,232,170," + a + ")"; cx.beginPath(); cx.arc(s.x, s.y, s.r, 0, 6.28); cx.fill();
     });
-    if (T % 6 === 0) spark(Math.random() * W, H + 6, { up: true, max: 260, r: Math.random() * 1.5 + .5, spread: .4 });
+    if (T % 6 === 0) spark(edgeX(), H + 6, { up: true, max: 260, r: Math.random() * 1.5 + .5, spread: .15 });
     for (var i = dust.length - 1; i >= 0; i--) {
       var d = dust[i]; d.life++; d.x += d.vx + Math.sin((d.life + d.tw) * .05) * .15; d.y += d.vy;
       if (d.life > d.max) { dust.splice(i, 1); continue; }
@@ -241,7 +242,7 @@
     var bk = $("bokeh");
     for (var j = 0; j < 14; j++) {
       var el = document.createElement("i"), sz = 8 + Math.random() * 26;
-      el.style.cssText = "left:" + Math.random() * 100 + "%;width:" + sz + "px;height:" + sz + "px;animation-duration:" + (12 + Math.random() * 14) + "s;animation-delay:" + (-Math.random() * 20) + "s";
+      el.style.cssText = "left:" + (j % 2 ? 88 + Math.random() * 12 : Math.random() * 12) + "%;width:" + sz + "px;height:" + sz + "px;animation-duration:" + (12 + Math.random() * 14) + "s;animation-delay:" + (-Math.random() * 20) + "s";
       bk.appendChild(el);
     }
   }
@@ -254,7 +255,7 @@
     for (var i = 0; i < 5; i++) {
       var b = document.createElement("div");
       b.className = "bf";
-      b.style.left = (8 + i * 19) + "%";
+      b.style.left = [3, 90, 6, 87, 1][i] + "%";
       b.style.width = (22 + Math.random() * 16) + "px";
       b.style.animationDuration = (60 + Math.random() * 35) + "s";
       b.style.animationDelay = (-Math.random() * 90) + "s";

@@ -23,9 +23,9 @@ a{color:inherit}
 @keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.35)}}
 @keyframes fly{
   0%{transform:translate(0,105vh) rotate(8deg)}
-  25%{transform:translate(18vw,70vh) rotate(-10deg)}
-  50%{transform:translate(-12vw,40vh) rotate(12deg)}
-  75%{transform:translate(14vw,14vh) rotate(-8deg)}
+  25%{transform:translate(3vw,70vh) rotate(-10deg)}
+  50%{transform:translate(-3vw,40vh) rotate(12deg)}
+  75%{transform:translate(3vw,14vh) rotate(-8deg)}
   100%{transform:translate(0,-12vh) rotate(6deg)}
 }
 
@@ -190,3 +190,8 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .nlabel select{margin-top:.4rem}
 .linkbtn{background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;color:var(--olive);cursor:pointer;margin-top:1rem}
 .thanks{margin-top:1rem;text-align:center;font-style:italic}
+
+.env-logo{height:34px;width:auto;margin-bottom:.2rem}
+.env-card .roman{font-size:2.2rem}
+.hero-logo{position:absolute;top:16px;left:50%;transform:translateX(-50%);height:54px;width:auto;z-index:2;opacity:.95;filter:drop-shadow(0 1px 8px rgba(0,0,0,.4))}
+.bye-logo{height:84px;width:auto;margin-top:1.6rem;opacity:.9}
