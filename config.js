@@ -18,7 +18,7 @@ window.CONFIG = {
 
   // Música: pon el archivo en assets/audio/ y ajusta el segundo de inicio.
   musica: "assets/audio/cree-y-atrevete.mp3",
-  musicaInicio: 10, // segundos. El formulario dice "minuto 10": confirmar si es 0:10
+  musicaInicio: 0, // segundos desde donde arranca la canción al abrir la tarjeta
   musicaTitulo: "Cree y atrévete · Ha*Ash",
 
   // QR / enlace para que los invitados suban fotos (álbum compartido de Drive o Google Fotos).

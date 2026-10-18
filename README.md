@@ -8,7 +8,7 @@ Sitio estático (HTML/CSS/JS). Se publica tal cual en GitHub Pages, Netlify o Ve
   (un enlace personal `?i=codigo` por invitado, con nombre y cupos).
 
 ## Pendiente
-- Confirmar si la música inicia en 0:10 (`musicaInicio` en `config.js`).
+- La canción inicia en 0:00 al abrir la tarjeta (`musicaInicio`).
 - El álbum de Google Fotos debe estar compartido con "permitir que otros agreguen fotos"; si no, el QR solo deja ver.
 - Opcional: registrar confirmaciones en Google Sheets (`rsvpEndpoint` en `config.js`).
 
