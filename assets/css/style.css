@@ -294,5 +294,5 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .done-menu li{padding:.45rem 0;border-top:1px solid rgba(168,136,74,.28);font-size:1.02rem;line-height:1.4}
 .done-menu b{font-weight:600;color:#8f6f2c}
 
-.deadline{font-size:1.75rem;line-height:1.2;color:var(--olive);margin:.2rem 0 1rem;-webkit-text-stroke:.4px currentColor}
+.deadline{font-size:clamp(1.7rem,7vw,2.3rem);line-height:1.2;color:var(--olive);margin:-.6rem 0 1.4rem;-webkit-text-stroke:.45px currentColor}
 .deadline span{white-space:nowrap}
