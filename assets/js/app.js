@@ -7,8 +7,9 @@
   /* ---------- Invitado personalizado ---------- */
   fetch("guests.json").then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
     .then(function (list) {
+      Object.keys(list).forEach(function (k) { allGuests.push({ n: list[k].n, c: list[k].c, k: norm(list[k].n) }); });
       var g = list[params.get("i")];
-      if (g) guest = g;
+      if (g) guest = { n: g.n, c: g.c };
       applyGuest();
     });
 
@@ -17,48 +18,56 @@
     buildRsvp();
   }
 
-  /* ---------- WhatsApp / confirmación ---------- */
+  /* ---------- Confirmación: buscar nombre, cupos y WhatsApp ---------- */
+  var allGuests = [], picked = null;
   function waUrl(num, msg) { return "https://wa.me/" + num + "?text=" + encodeURIComponent(msg); }
+  function norm(t) { return t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim(); }
 
-  function buildRsvp() {
-    var box = $("rsvpBtns"), sel = $("rsvpN");
-    box.innerHTML = "";
-    if (guest) {
-      var cb = $("cuposBox");
-      cb.hidden = false;
-      cb.textContent = guest.n + " · " + guest.c + (guest.c === 1 ? " cupo" : " cupos");
-      $("rsvpText").textContent = "Tu presencia hará que esta noche sea aún más especial. Confirma cuántas personas asistirán.";
-      if (guest.c > 1) {
-        $("rsvpExtra").hidden = false;
-        sel.innerHTML = "";
-        for (var i = guest.c; i >= 1; i--) {
-          var o = document.createElement("option");
-          o.value = i; o.textContent = i; sel.appendChild(o);
-        }
-      }
-    }
-    C.whatsapp.forEach(function (w, idx) {
-      var a = document.createElement("a");
-      a.className = "btn" + (idx ? " alt2" : "");
-      a.target = "_blank"; a.rel = "noopener";
-      a.textContent = idx === 0 ? "Confirmar asistencia" : "Confirmar con " + w.nombre;
-      a.addEventListener("click", function (e) {
-        e.preventDefault();
-        var n = guest ? (guest.c > 1 ? sel.value : 1) : null;
-        var msg = guest
-          ? "Hola, soy " + guest.n + ". Confirmo mi asistencia a los XV de " + C.nombreCorto + " el " + C.fechaTexto + " (" + n + (n == 1 ? " persona" : " personas") + "). ¡Gracias por la invitación! 💚"
-          : "Hola, confirmo mi asistencia a los XV de " + C.nombreCorto + " el " + C.fechaTexto + ". ¡Gracias por la invitación! 💚";
-        if (C.rsvpEndpoint && guest) {
-          try {
-            navigator.sendBeacon(C.rsvpEndpoint, JSON.stringify({ nombre: guest.n, cupos: guest.c, asistentes: n, ts: new Date().toISOString() }));
-          } catch (err) {}
-        }
-        window.open(waUrl(w.numero, msg), "_blank", "noopener");
-      });
-      a.href = waUrl(w.numero, "Hola");
-      box.appendChild(a);
+  function pick(g) {
+    picked = g;
+    $("rsvpSearch").hidden = true; $("rsvpThanks").hidden = true; $("rsvpPick").hidden = false;
+    $("pickName").textContent = g.n;
+    $("pickMax").textContent = g.c === 1 ? "Tu invitación es para 1 persona." : "Tu invitación es para máximo " + g.c + " personas.";
+    var sel = $("rsvpN"); sel.innerHTML = "";
+    for (var i = g.c; i >= 1; i--) sel.add(new Option(i === 1 ? "1 persona" : i + " personas", i));
+    sel.add(new Option("No podré asistir", 0));
+  }
+  function search() {
+    var q = norm($("q").value), list = $("qList");
+    list.innerHTML = ""; $("qEmpty").hidden = true;
+    if (q.length < 3) return;
+    var toks = q.split(" ");
+    var hits = allGuests.filter(function (g) { return toks.every(function (t) { return g.k.indexOf(t) > -1; }); }).slice(0, 6);
+    hits.forEach(function (g) {
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.textContent = g.n; b.addEventListener("click", function () { pick(g); });
+      li.appendChild(b); list.appendChild(li);
     });
-    $("giftLink").href = waUrl(C.whatsapp[0].numero, "Hola, quiero coordinar la lluvia de sobres para los XV de " + C.nombreCorto + " 💚");
+    if (!hits.length) {
+      $("qEmpty").hidden = false;
+      var a = $("qEmpty"); a.innerHTML = 'No encontramos ese nombre. Revisa cómo está escrito o <a target="_blank" rel="noopener">escríbenos por WhatsApp</a>.';
+      a.querySelector("a").href = waUrl(C.whatsapp[0].numero, "Hola, no encuentro mi nombre en la invitación de los XV de " + C.nombreCorto + ".");
+    }
+  }
+  $("q").addEventListener("input", search);
+  $("rsvpBack").addEventListener("click", function () {
+    picked = null; $("rsvpPick").hidden = true; $("rsvpThanks").hidden = true; $("rsvpSearch").hidden = false; $("q").value = ""; $("qList").innerHTML = ""; $("q").focus();
+  });
+  $("rsvpGo").addEventListener("click", function () {
+    if (!picked) return;
+    var n = parseInt($("rsvpN").value, 10);
+    if (isNaN(n) || n < 0 || n > picked.c) return;
+    var msg = n === 0
+      ? "Hola, soy " + picked.n + ". Lamentablemente no podré asistir a los XV de " + C.nombreCorto + ". ¡Gracias por la invitación! 💚"
+      : "Hola, soy " + picked.n + ". Confirmo mi asistencia a los XV de " + C.nombreCorto + " el " + C.fechaTexto + ": asistiremos " + n + (n === 1 ? " persona" : " personas") + " (de " + picked.c + " cupos). ¡Gracias por la invitación! 💚";
+    if (C.rsvpEndpoint) {
+      try { fetch(C.rsvpEndpoint, { method: "POST", mode: "no-cors", body: JSON.stringify({ nombre: picked.n, cupos: picked.c, asistentes: n, fecha: new Date().toISOString() }) }); } catch (e) {}
+    }
+    window.open(waUrl(C.whatsapp[0].numero, msg), "_blank", "noopener");
+    $("rsvpThanks").hidden = false;
+  });
+  function buildRsvp() {
+    if (guest) pick(guest);
   }
 
   /* ---------- Mapa ---------- */
@@ -149,10 +158,14 @@
   var els = [].slice.call(document.querySelectorAll(".reveal"));
   function revealNow() { els.forEach(function (el) { io ? io.observe(el) : el.classList.add("in"); }); }
 
-  /* ---------- Pausar música al reproducir el video ---------- */
+  /* ---------- Banner de video: corre al llegar, sin audio ---------- */
   var vid = $("vid");
-  vid.addEventListener("play", function () { if (!bgm.paused) { bgm.pause(); bgm.dataset.auto = "1"; } });
-  vid.addEventListener("pause", function () { if (bgm.dataset.auto) { bgm.play(); delete bgm.dataset.auto; } });
+  vid.muted = true;
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else vid.pause(); });
+    }, { threshold: 0.35 }).observe(vid);
+  } else { vid.play(); }
 
   /* ---------- Polvo de hadas, hadas y estrellas ---------- */
   var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -183,13 +196,13 @@
     return { a: .21 + i * .07, b: .17 + i * .05, p: i * 2.1, q: i * 1.3, cx: .25 + i * .25, cy: .3 + i * .2, rx: .22 + i * .04, ry: .26, x: 0, y: 0, ang: 0 };
   }
   function drawFairy(f) {
-    var t = T * .01;
+    var t = T * .003;
     var nx = W * (f.cx + f.rx * Math.sin(t * f.a * 6 + f.p)), ny = H * (f.cy + f.ry * Math.sin(t * f.b * 6 + f.q) * Math.cos(t * .7 + f.p));
     f.ang = Math.atan2(ny - f.y, nx - f.x); f.x = nx; f.y = ny;
     spark(f.x + (Math.random() - .5) * 6, f.y + 4, { max: 55, r: Math.random() * 1.6 + .5, spread: .6, vy: .25 });
-    if (Math.random() < .5) spark(f.x, f.y + 4, { max: 40, r: .9, spread: .9, vy: .35 });
-    glint(f.x, f.y, 3.2, .95);
-    var w = Math.sin(T * .45) * .55 + .6;
+    if (Math.random() < .2) spark(f.x, f.y + 4, { max: 40, r: .9, spread: .9, vy: .35 });
+    glint(f.x, f.y, 2.2, .7);
+    var w = Math.sin(T * .2) * .55 + .6;
     cx.save(); cx.translate(f.x, f.y); cx.fillStyle = "rgba(255,248,225,.55)"; cx.strokeStyle = "rgba(255,226,160,.7)"; cx.lineWidth = .6;
     [-1, 1].forEach(function (s) {
       cx.save(); cx.scale(s, 1); cx.rotate(-.55 * w - .25);
@@ -243,8 +256,8 @@
       b.className = "bf";
       b.style.left = (8 + i * 19) + "%";
       b.style.width = (22 + Math.random() * 16) + "px";
-      b.style.animationDuration = (22 + Math.random() * 14) + "s";
-      b.style.animationDelay = (-Math.random() * 30) + "s";
+      b.style.animationDuration = (60 + Math.random() * 35) + "s";
+      b.style.animationDelay = (-Math.random() * 90) + "s";
       b.innerHTML = BF;
       $("butterflies").appendChild(b);
     }

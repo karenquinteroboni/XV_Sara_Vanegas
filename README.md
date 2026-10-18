@@ -15,3 +15,9 @@ Sitio estático (HTML/CSS/JS). Se publica tal cual en GitHub Pages, Netlify o Ve
 ## Privacidad
 `guests.json` y `links.csv` contienen nombres de invitados. Si se publica el sitio, `guests.json` queda
 descargable. No incluye teléfonos.
+
+## Confirmaciones en Google Sheets (opcional)
+Hoy la confirmación llega por WhatsApp. Para que además se registre en una hoja:
+1. Crear una hoja de Google → Extensiones → Apps Script → pegar `tools/apps-script.gs`.
+2. Implementar → Aplicación web (ejecutar como "yo", acceso "cualquier persona") → copiar la URL.
+3. Pegarla en `rsvpEndpoint` dentro de `config.js`.

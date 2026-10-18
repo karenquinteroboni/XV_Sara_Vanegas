@@ -49,7 +49,6 @@
   <a href="#evento">El evento</a>
   <a href="#ubicacion">Ubicación</a>
   <a href="#dress">Dress code</a>
-  <a href="#video">Video</a>
   <a href="#regalos">Lluvia de sobres</a>
   <a href="#galeria" id="menuGaleria">Galería</a>
   <a href="#confirmar">Confirmar asistencia</a>
@@ -68,7 +67,7 @@
       <p class="roman big shimmer">XV</p>
       <h1 class="script">Sara Valentina<br>Vanegas Pompeyo</h1>
       <div class="rule"><span></span><b>✦</b><span></span></div>
-      <p class="date-line">7 · XI · MMXXVI</p>
+      <p class="date-line">7 . 11 . 2026</p>
     </div>
     <a href="#bienvenida" class="scroll-hint" aria-label="Bajar">⌄</a>
   </header>
@@ -137,25 +136,19 @@
   <section id="dress" class="sec center alt">
     <p class="eyebrow reveal">Dress code</p>
     <h2 class="script reveal">Elegancia de gala</h2>
-    <div class="swatches reveal" aria-hidden="true"><i style="--c:#c9a96a"></i><i style="--c:#e6d6b0"></i><i style="--c:#f3ead8"></i><i style="--c:#7d8b62"></i></div>
-    <p class="reveal note">El color verde está reservado para la quinceañera.</p>
+        <p class="reveal dress-text">El color verde está reservado para la quinceañera.</p>
   </section>
 
-  <section id="video" class="sec center">
-    <p class="eyebrow reveal">Un pedacito de magia</p>
-    <h2 class="script reveal">Mira esto</h2>
-    <div class="video-wrap reveal">
-      <video id="vid" controls playsinline preload="metadata" poster="assets/img/portada.webp">
-        <source src="assets/video/invitacion.mp4" type="video/mp4">
-      </video>
-    </div>
+  <section id="video" class="banner" aria-label="Video">
+    <video id="vid" muted loop playsinline preload="metadata" poster="assets/img/portada.webp" aria-hidden="true">
+      <source src="assets/video/invitacion.mp4" type="video/mp4">
+    </video>
   </section>
 
   <section id="regalos" class="sec center alt">
     <p class="eyebrow reveal">Lluvia de sobres</p>
     <h2 class="script reveal">Tu presencia es mi mejor regalo</h2>
-    <p class="reveal prose-sm">Si deseas tener un detalle conmigo, agradeceré una lluvia de sobres. Para coordinar la entrega, escríbenos por WhatsApp.</p>
-    <a id="giftLink" class="btn ghost reveal" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    <p class="reveal prose-sm">Si deseas tener un detalle conmigo, agradeceré una lluvia de sobres.</p>
   </section>
 
   <section id="galeria" class="sec center" hidden>
@@ -169,13 +162,24 @@
     <div class="orn reveal">✦</div>
     <p class="eyebrow reveal">Reserva la fecha</p>
     <h2 class="script reveal">¿Nos acompañas?</h2>
-    <p class="reveal prose-sm" id="rsvpText">Tu presencia hará que esta noche sea aún más especial. Confirma tu asistencia por WhatsApp.</p>
-    <div class="cupos reveal" id="cuposBox" hidden></div>
-    <div class="rsvp-btns reveal" id="rsvpBtns"></div>
-    <div class="reveal rsvp-extra" id="rsvpExtra" hidden>
-      <label>Nº de personas que asistirán
-        <select id="rsvpN"></select>
-      </label>
+    <p class="reveal prose-sm" id="rsvpText">Tu presencia hará que esta noche sea aún más especial. Busca tu nombre para confirmar tu asistencia.</p>
+    <div class="rsvp-box reveal">
+      <div id="rsvpSearch">
+        <label for="q">Escribe tu nombre</label>
+        <input id="q" type="search" autocomplete="off" placeholder="Ej. Juana Solarte" aria-controls="qList">
+        <ul id="qList" class="qlist" role="listbox"></ul>
+        <p id="qEmpty" class="qempty" hidden>No encontramos ese nombre. Revisa cómo está escrito o escríbenos por WhatsApp.</p>
+      </div>
+      <div id="rsvpPick" hidden>
+        <p class="cupos" id="pickName"></p>
+        <p id="pickMax" class="pickmax"></p>
+        <label class="nlabel">¿Cuántas personas asistirán?
+          <select id="rsvpN"></select>
+        </label>
+        <button class="btn" id="rsvpGo" type="button">Confirmar asistencia</button>
+        <p><button class="linkbtn" id="rsvpBack" type="button">No soy yo · buscar otro nombre</button></p>
+      </div>
+      <p id="rsvpThanks" class="thanks" hidden>¡Gracias! Se abrió WhatsApp con tu respuesta: solo falta que pulses enviar. 💚</p>
     </div>
   </section>
 

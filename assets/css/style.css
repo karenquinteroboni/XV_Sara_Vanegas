@@ -19,7 +19,7 @@ a{color:inherit}
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
 #butterflies{position:fixed;inset:0;pointer-events:none;z-index:19;overflow:hidden}
 .bf{position:absolute;width:34px;opacity:.85;animation:fly linear infinite;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
-.bf svg{width:100%;animation:flap .45s ease-in-out infinite alternate;transform-origin:50% 50%}
+.bf svg{width:100%;animation:flap 1s ease-in-out infinite alternate;transform-origin:50% 50%}
 @keyframes flap{from{transform:scaleX(1)}to{transform:scaleX(.35)}}
 @keyframes fly{
   0%{transform:translate(0,105vh) rotate(8deg)}
@@ -170,3 +170,23 @@ main>.sec.alt>*{max-width:640px;margin-left:auto;margin-right:auto}
 .clock b{text-shadow:0 0 14px rgba(255,214,120,.5)}
 .btn{box-shadow:0 0 0 rgba(201,169,106,0);animation:glow 3.2s ease-in-out infinite}
 @keyframes glow{50%{box-shadow:0 0 22px rgba(201,169,106,.55)}}
+
+.dress-text{font-size:1.55rem;line-height:1.4;color:var(--olive);margin-top:1rem;font-weight:500}
+.banner{position:relative;z-index:3;max-width:none!important;padding:0!important;margin:0!important;border-top:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);background:#000}
+.banner video{display:block;width:100%;height:clamp(220px,56vw,520px);object-fit:cover}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,37,24,.25),transparent 25%,transparent 75%,rgba(29,37,24,.25));pointer-events:none}
+.rsvp-box{max-width:420px;margin:1.6rem auto 0;text-align:left}
+.rsvp-box label{display:block;font-family:var(--display);font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-2);margin-bottom:.5rem}
+.rsvp-box input,.rsvp-box select{width:100%;font:inherit;font-size:1.1rem;padding:.8rem 1rem;border:1px solid var(--gold);background:#fffdf7;color:var(--ink);border-radius:2px}
+.qlist{list-style:none;margin-top:.4rem;border:1px solid rgba(201,169,106,.5);border-radius:2px;background:#fffdf7;max-height:240px;overflow:auto}
+.qlist:empty{display:none}
+.qlist li button{display:block;width:100%;text-align:left;font:inherit;padding:.75rem 1rem;border:0;border-bottom:1px solid rgba(201,169,106,.25);background:transparent;cursor:pointer;color:var(--ink)}
+.qlist li button:hover,.qlist li button:focus{background:#f3ead8;outline:0}
+.qempty{margin-top:.8rem;font-style:italic;font-size:.95rem}
+.qempty a{color:var(--olive)}
+#rsvpPick{text-align:center}
+.pickmax{margin-bottom:1rem}
+.nlabel{text-align:left;margin-bottom:1.2rem!important}
+.nlabel select{margin-top:.4rem}
+.linkbtn{background:none;border:0;font:inherit;font-size:.95rem;text-decoration:underline;color:var(--olive);cursor:pointer;margin-top:1rem}
+.thanks{margin-top:1rem;text-align:center;font-style:italic}
