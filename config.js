@@ -34,5 +34,5 @@ window.CONFIG = {
   ],
 
   // Opcional: URL del Apps Script que registra confirmaciones en Google Sheets.
-  rsvpEndpoint: ""
+  rsvpEndpoint: "https://script.google.com/macros/s/AKfycbxXTOmRdAQb-_t5SrZuNzp2FayEBDV9sSaSDMMONDJG7VV261fO-EEP09EAvBBNOoMQaw/exec"
 };
