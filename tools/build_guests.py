@@ -7,6 +7,7 @@ SALT = "sara-xv-2026"
 NOMBRE_ANTERIOR = {
     "Sr. Andrey Vergara, esposa, hijo e hija": "Sr. Andrey Vergara y esposa",
     "Sr. Nelson Botero, esposa e hija": "Sr. Nelson Botero y esposa",
+    "Sr. Gabriel Pérez, esposa e hijo": "Sr. Gabriel Pérez y esposa",
 }
 BASE = sys.argv[1] if len(sys.argv) > 1 else "https://www.xn--saravalentinamisxvaos-ubc.com/"
 
