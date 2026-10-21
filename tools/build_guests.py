@@ -5,7 +5,6 @@ import openpyxl
 SALT = "sara-xv-2026"
 # Invitados renombrados: el código se sigue calculando con el nombre anterior para que su enlace personal no cambie.
 NOMBRE_ANTERIOR = {
-    "Sr. Fernando Valderrama, esposa, hijo e hija": "Sr. Fernando Valderrama y esposa",
     "Sr. Andrey Vergara, esposa, hijo e hija": "Sr. Andrey Vergara y esposa",
     "Sr. Nelson Botero, esposa e hija": "Sr. Nelson Botero y esposa",
 }
