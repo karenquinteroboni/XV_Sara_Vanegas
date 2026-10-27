@@ -9,6 +9,7 @@ NOMBRE_ANTERIOR = {
     "Sr. Nelson Botero, esposa e hija": "Sr. Nelson Botero y esposa",
     "Sr. Gabriel Pérez, esposa e hijo": "Sr. Gabriel Pérez y esposa",
     "Sr. Fernando Valderrama, esposa e hijos": "Sr. Fernando Valderrama y esposa",
+    "Sr. Romel Guzmán, esposa e hija": "Sr. Romel Guzmán y esposa",
 }
 BASE = sys.argv[1] if len(sys.argv) > 1 else "https://www.xn--saravalentinamisxvaos-ubc.com/"
 
