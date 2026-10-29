@@ -7,7 +7,7 @@ SALT = "sara-xv-2026"
 NOMBRE_ANTERIOR = {
     "Sr. Andrey Vergara, esposa, hijo e hija": "Sr. Andrey Vergara y esposa",
     "Sr. Nelson Botero, esposa e hija": "Sr. Nelson Botero y esposa",
-    "Sr. Gabriel Pérez, esposa e hijo": "Sr. Gabriel Pérez y esposa",
+    "Sr. Gabriel Pérez, esposa e hijos": "Sr. Gabriel Pérez y esposa",
     "Sr. Fernando Valderrama, esposa e hijos": "Sr. Fernando Valderrama y esposa",
     "Sr. Romel Guzmán, esposa e hija": "Sr. Romel Guzmán y esposa",
 }
